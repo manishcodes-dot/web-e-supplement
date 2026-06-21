@@ -43,10 +43,10 @@ export default function App() {
     { icon: 'K', name: 'Kidney Urinary Health' },
     { icon: 'L', name: 'Liver Health' },
     { icon: 'B', name: 'Bone Health' },
-    { icon: 'O', name: 'Other' },
     { icon: 'T', name: 'Thyroid & Hormonal Health' },
     { icon: 'N', name: 'Nerve Health' },
     { icon: 'E', name: 'Energy & Vitality' },
+    { icon: 'O', name: 'Other' },
   ];
 
   const addToCart = (item: CartItem) => {
@@ -102,6 +102,13 @@ export default function App() {
             </div>
             
             <nav className="hidden lg:flex items-center gap-6 relative h-full">
+              <button 
+                onClick={() => setPage('home')}
+                className="text-sm font-medium tracking-wide text-white/80 hover:text-white transition-colors h-full"
+              >
+                Home
+              </button>
+
               {/* CSS-based Group Hover wrapper to ensure seamless mouse tracking */}
               <div className="group h-full flex items-center">
                 <div className="flex items-center gap-1 cursor-pointer text-white/80 group-hover:text-white transition-colors h-full py-4">
@@ -125,6 +132,12 @@ export default function App() {
                 </div>
               </div>
 
+              <button 
+                onClick={() => setPage('shop')}
+                className="text-sm font-medium tracking-wide text-white/80 hover:text-white transition-colors"
+              >
+                All Products
+              </button>
               <button 
                 onClick={() => setPage('shop')}
                 className="text-sm font-medium tracking-wide text-white/80 hover:text-white transition-colors"

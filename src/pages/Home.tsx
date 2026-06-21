@@ -219,100 +219,111 @@ export default function Home({ setPage, setSelectedGoal, addToCart }: HomeProps)
             <div className="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {/* Product 1 */}
-            <div className="group">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            {/* Product 1: Horsewood */}
+            <div className="group bg-white rounded-[2rem] p-4 border border-outline-variant/30 shadow-sm hover:shadow-xl transition-all duration-300">
               <div 
                 onClick={() => setPage('product')}
-                className="aspect-[4/5] rounded-3xl overflow-hidden mb-6 bg-surface-container-low relative cursor-pointer"
+                className="aspect-square rounded-3xl overflow-hidden bg-gray-50 relative flex justify-center items-center p-8 cursor-pointer"
               >
                 <img 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" 
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX8ieWWEase7Ck8vjwhGKzFmqn5Efr8bk3KQ5umsiY4TKluQi8bBUoYJjL9eFTq91GlTVQVDdn7ggveDeyQjC2k_2BsUIZienOG9MtW272BMu20jICVmLJiMs5e5McXDksH7KU3nf3xgQ6uoLgJaCVIzhHDkfvlxZVvePUNY2glv-A1JtF45C2The7Lfmo_jmBqiMqjcZmZ91NDVnCswp3tLZuA2YrrDK2t8N3T6qAoebsRxqC9py1g7BWsbiGzgBoDbsFEODKGItE" 
-                  alt="Neuro-Sync bottle"
+                  alt="Horsewood"
                 />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-label-sm font-label-sm shadow-sm">NEW FORMULA</div>
-              </div>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <h4 onClick={() => setPage('product')} className="font-headline-md text-primary text-xl cursor-pointer hover:text-secondary transition-colors">Neuro-Sync 2.0</h4>
-                  <span className="text-on-surface-variant font-bold">$84.00</span>
+                <div className="absolute top-4 right-4 bg-[#1a202c] text-white px-4 py-1.5 rounded-lg text-xs font-bold tracking-widest shadow-sm">
+                  POPULAR
                 </div>
-                <p className="text-on-surface-variant font-body-md">Optimized Nootropic Stack for Peak Focus</p>
+              </div>
+              <div className="px-4 py-6 text-left">
+                <h4 onClick={() => setPage('product')} className="text-[28px] font-extrabold text-[#1a202c] cursor-pointer hover:text-secondary transition-colors leading-tight">
+                  Horsewood
+                </h4>
+                <div className="text-[36px] font-extrabold text-[#1a202c] mt-2 leading-none">
+                  $89.00
+                </div>
                 <button 
                   onClick={() => handleProductAction({
-                    name: 'NEURO-SYNC 2.0',
-                    price: 84.0,
-                    desc: 'Optimized Nootropic Stack for Peak Focus',
+                    name: 'Horsewood',
+                    price: 89.0,
+                    desc: 'Male Enhancement Formula',
                     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBX8ieWWEase7Ck8vjwhGKzFmqn5Efr8bk3KQ5umsiY4TKluQi8bBUoYJjL9eFTq91GlTVQVDdn7ggveDeyQjC2k_2BsUIZienOG9MtW272BMu20jICVmLJiMs5e5McXDksH7KU3nf3xgQ6uoLgJaCVIzhHDkfvlxZVvePUNY2glv-A1JtF45C2The7Lfmo_jmBqiMqjcZmZ91NDVnCswp3tLZuA2YrrDK2t8N3T6qAoebsRxqC9py1g7BWsbiGzgBoDbsFEODKGItE'
                   })}
-                  className="w-full mt-4 py-3 border border-primary text-primary rounded-full hover:bg-primary hover:text-on-primary transition-all active:scale-[0.98] cursor-pointer"
+                  className="w-full mt-8 bg-[#1b65a6] text-white py-4 rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-[#15548c] active:scale-[0.98] transition-all cursor-pointer"
                 >
-                  ADD TO PROTOCOL
+                  VIEW DETAILS
                 </button>
               </div>
             </div>
 
-            {/* Product 2 */}
-            <div className="group">
+            {/* Product 2: Vivalis */}
+            <div className="group bg-white rounded-[2rem] p-4 border border-outline-variant/30 shadow-sm hover:shadow-xl transition-all duration-300">
               <div 
                 onClick={() => setPage('product')}
-                className="aspect-[4/5] rounded-3xl overflow-hidden mb-6 bg-surface-container-low relative cursor-pointer"
+                className="aspect-square rounded-3xl overflow-hidden bg-gray-50 relative flex justify-center items-center p-8 cursor-pointer"
               >
                 <img 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" 
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIaeZT8HiZLICQn319EVwxq2_tDEtPWY9bt9vUPTEZS8mfym6zcHazg1-jHiQn0V11wPf8I51m_ii0okpSeTHKHrLLntG4ScNzmgPWNDQV51aPYCZs7pufwc05gtyWoVguNZxvFnn_ymhlDVB3uJxJQL9ZH9hZUZ0byKHx3uJpGwqZvpzNtJRixFE51kUMNKF5n5q-ibAPovkjyQytZ4WNZFU4-O_E_2xSz0bxJSR5uBTOvCnE6yirgWwP94A177QWR66sWQyWgVRR" 
-                  alt="Cell-Restore bottle"
+                  alt="Vivalis"
                 />
-              </div>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <h4 onClick={() => setPage('product')} className="font-headline-md text-primary text-xl cursor-pointer hover:text-secondary transition-colors">Cell-Restore Elixir</h4>
-                  <span className="text-on-surface-variant font-bold">$120.00</span>
+                <div className="absolute top-4 right-4 bg-[#ea580c] text-white px-4 py-1.5 rounded-lg text-xs font-bold tracking-widest shadow-sm">
+                  HOT
                 </div>
-                <p className="text-on-surface-variant font-body-md">Liposomal NAD+ for Cellular Rejuvenation</p>
+              </div>
+              <div className="px-4 py-6 text-left">
+                <h4 onClick={() => setPage('product')} className="text-[28px] font-extrabold text-[#1a202c] cursor-pointer hover:text-secondary transition-colors leading-tight">
+                  Vivalis
+                </h4>
+                <div className="text-[36px] font-extrabold text-[#1a202c] mt-2 leading-none">
+                  $69.00
+                </div>
                 <button 
                   onClick={() => handleProductAction({
-                    name: 'CELL-RESTORE ELIXIR',
-                    price: 120.0,
-                    desc: 'Liposomal NAD+ for Cellular Rejuvenation',
+                    name: 'Vivalis',
+                    price: 69.0,
+                    desc: 'Advanced Energy Formula',
                     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAIaeZT8HiZLICQn319EVwxq2_tDEtPWY9bt9vUPTEZS8mfym6zcHazg1-jHiQn0V11wPf8I51m_ii0okpSeTHKHrLLntG4ScNzmgPWNDQV51aPYCZs7pufwc05gtyWoVguNZxvFnn_ymhlDVB3uJxJQL9ZH9hZUZ0byKHx3uJpGwqZvpzNtJRixFE51kUMNKF5n5q-ibAPovkjyQytZ4WNZFU4-O_E_2xSz0bxJSR5uBTOvCnE6yirgWwP94A177QWR66sWQyWgVRR'
                   })}
-                  className="w-full mt-4 py-3 border border-primary text-primary rounded-full hover:bg-primary hover:text-on-primary transition-all active:scale-[0.98] cursor-pointer"
+                  className="w-full mt-8 bg-[#1b65a6] text-white py-4 rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-[#15548c] active:scale-[0.98] transition-all cursor-pointer"
                 >
-                  ADD TO PROTOCOL
+                  VIEW DETAILS
                 </button>
               </div>
             </div>
 
-            {/* Product 3 */}
-            <div className="group">
+            {/* Product 3: Prostate Max */}
+            <div className="group bg-white rounded-[2rem] p-4 border border-outline-variant/30 shadow-sm hover:shadow-xl transition-all duration-300">
               <div 
                 onClick={() => setPage('product')}
-                className="aspect-[4/5] rounded-3xl overflow-hidden mb-6 bg-surface-container-low relative cursor-pointer"
+                className="aspect-square rounded-3xl overflow-hidden bg-gray-50 relative flex justify-center items-center p-8 cursor-pointer"
               >
                 <img 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" 
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuhwRbIhs20QeFamxFS07jqbIvwXjt3KBiDQLuMIFVPHtz3W3Ox3WU2YTSpyy4oglO1i-6qDMM9sLs9dG8HwMCYb8qS_Akpi35k51gx-2Ff0hLwS1T01LnOejUmgfQa4reryVHOR30-Ndxa_MGZLxgH2T4BXIQHubkfisYb8oGUGDvbLDn2GStJ1RLbUx8w22004VK9GWWISbmyzkZgD82EtRuvYevo0M8_Rr7CvELVBiINAvJY3jG0LIfYGc4i-1NxWykg0y-1Pze" 
-                  alt="Bio-Shield AM capsules"
+                  alt="Prostate Max"
                 />
-              </div>
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <h4 onClick={() => setPage('product')} className="font-headline-md text-primary text-xl cursor-pointer hover:text-secondary transition-colors">Bio-Shield AM</h4>
-                  <span className="text-on-surface-variant font-bold">$68.00</span>
+                <div className="absolute top-4 right-4 bg-[#1a202c] text-white px-4 py-1.5 rounded-lg text-xs font-bold tracking-widest shadow-sm">
+                  TOP RATED
                 </div>
-                <p className="text-on-surface-variant font-body-md">Advanced Metabolic &amp; Immune Catalyst</p>
+              </div>
+              <div className="px-4 py-6 text-left">
+                <h4 onClick={() => setPage('product')} className="text-[28px] font-extrabold text-[#1a202c] cursor-pointer hover:text-secondary transition-colors leading-tight">
+                  Prostate Max
+                </h4>
+                <div className="text-[36px] font-extrabold text-[#1a202c] mt-2 leading-none">
+                  $89.00
+                </div>
                 <button 
                   onClick={() => handleProductAction({
-                    name: 'BIO-SHIELD AM',
-                    price: 68.0,
-                    desc: 'Advanced Metabolic & Immune Catalyst',
+                    name: 'Prostate Max',
+                    price: 89.0,
+                    desc: 'Prostate Health Support',
                     img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDuhwRbIhs20QeFamxFS07jqbIvwXjt3KBiDQLuMIFVPHtz3W3Ox3WU2YTSpyy4oglO1i-6qDMM9sLs9dG8HwMCYb8qS_Akpi35k51gx-2Ff0hLwS1T01LnOejUmgfQa4reryVHOR30-Ndxa_MGZLxgH2T4BXIQHubkfisYb8oGUGDvbLDn2GStJ1RLbUx8w22004VK9GWWISbmyzkZgD82EtRuvYevo0M8_Rr7CvELVBiINAvJY3jG0LIfYGc4i-1NxWykg0y-1Pze'
                   })}
-                  className="w-full mt-4 py-3 border border-primary text-primary rounded-full hover:bg-primary hover:text-on-primary transition-all active:scale-[0.98] cursor-pointer"
+                  className="w-full mt-8 bg-[#1b65a6] text-white py-4 rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-[#15548c] active:scale-[0.98] transition-all cursor-pointer"
                 >
-                  ADD TO PROTOCOL
+                  VIEW DETAILS
                 </button>
               </div>
             </div>
