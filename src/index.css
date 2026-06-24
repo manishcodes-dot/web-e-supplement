@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 @import "tailwindcss";
 
+html {
+  zoom: 0.7;
+}
+
+.zoom-screen-height {
+  height: calc(100vh / 0.7) !important;
+}
+
+.zoom-min-screen-height {
+  min-height: calc(100vh / 0.7) !important;
+}
+
 @theme {
   --color-surface-container-high: #dce9ff;
   --color-surface-tint: #545f73;
