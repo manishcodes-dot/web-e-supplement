@@ -163,9 +163,9 @@ export default function Home({ setPage, addToCart }: HomeProps) {
   };
 
   return (
-    <div className="zoom-screen-height overflow-y-auto scroll-smooth snap-y snap-mandatory bg-surface">
+    <div className="min-h-screen bg-surface">
       {/* Hero Section */}
-      <section className="relative zoom-screen-height snap-start snap-always flex flex-col items-center justify-center pt-28 pb-12 overflow-hidden px-margin-mobile md:px-margin-desktop bg-surface">
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-28 pb-16 overflow-hidden px-margin-mobile md:px-margin-desktop bg-surface">
         {/* Huge Headline */}
         <motion.div 
           initial={{ opacity: 0, y: -40 }}
@@ -290,7 +290,7 @@ export default function Home({ setPage, addToCart }: HomeProps) {
       </section>
 
       {/* Benefits You Feel Section */}
-      <section className="zoom-screen-height snap-start snap-always bg-surface-container-low relative overflow-hidden flex flex-col items-center justify-center py-16">
+      <section className="bg-surface-container-low relative overflow-hidden flex flex-col items-center justify-center py-20 md:py-28">
         <div className="w-full max-w-7xl mx-auto px-6 md:px-12 relative">
           <motion.h2 
             initial={{ opacity: 0, x: -50 }}
@@ -398,26 +398,59 @@ export default function Home({ setPage, addToCart }: HomeProps) {
         </div>
       </section>
 
-      {/* Featured Products */}
-      <section className="zoom-screen-height snap-start snap-always bg-surface px-margin-mobile md:px-margin-desktop flex flex-col items-center justify-center py-16">
-        <div className="max-w-container-max mx-auto px-6 md:px-16">
-          <div className="mb-16 text-center space-y-4">
-            <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg text-primary">Core Formulations</h2>
-            <div className="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
+      {/* Other Alternative Products Section */}
+      <section className="bg-surface px-margin-mobile md:px-margin-desktop flex flex-col items-center justify-center py-20 md:py-28">
+        <div className="max-w-container-max mx-auto px-2 md:px-8 w-full">
+          {/* Header */}
+          <div className="mb-8 text-center">
+            <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg text-primary">Other Alternative Products</h2>
+            <div className="w-24 h-1 bg-secondary mx-auto rounded-full mt-3"></div>
           </div>
           
-          <div className="flex items-center gap-6 md:gap-10 justify-center">
-            {/* Left Arrow Button */}
+          {/* Main Showcase Row: Side Navigation Arrows & Product Cards */}
+          <div className="flex items-center gap-3 md:gap-6 w-full relative">
+            {/* Left Side Arrow Button */}
             <button 
               onClick={prevPage}
               disabled={currentPage === 1}
-              className={`hidden md:flex w-14 h-14 rounded-full bg-white border border-outline-variant/30 items-center justify-center text-primary shadow-lg hover:bg-surface-container-low transition-all duration-300 shrink-0 cursor-pointer ${currentPage === 1 ? 'opacity-30 pointer-events-none' : ''}`}
+              className={`w-12 h-12 rounded-full bg-white border border-outline-variant/30 flex items-center justify-center text-primary shadow-lg hover:bg-surface-container-low transition-all duration-300 shrink-0 cursor-pointer ${currentPage === 1 ? 'opacity-30 pointer-events-none' : 'hover:scale-110 active:scale-95'}`}
+              aria-label="Previous Page"
             >
               <span className="material-symbols-outlined text-2xl font-bold">chevron_left</span>
             </button>
 
-            {/* Product Cards Container with Swipe gesture support */}
-            <div className="flex-1 overflow-hidden py-4 px-2" style={{ minHeight: '620px' }}>
+            {/* Product Cards Container + Aligned Top Control Bar */}
+            <div className="flex-1 overflow-hidden flex flex-col">
+              {/* Top Control Bar: Total Results (Left) & Page Numbers (Right) - Aligned with Cards */}
+              <div className="mb-4 flex flex-row items-center justify-between gap-4 w-full">
+                <div className="flex items-center gap-2 text-sm font-medium text-on-surface-variant">
+                  <span className="w-2 h-2 rounded-full bg-secondary"></span>
+                  Showing <span className="font-bold text-primary">{indexOfFirstItem + 1}–{Math.min(indexOfLastItem, CORE_PRODUCTS.length)}</span> of <span className="font-bold text-primary">{CORE_PRODUCTS.length}</span> products
+                </div>
+
+                {/* Page Number Buttons at Top Right */}
+                <div className="flex items-center gap-1">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                    <button
+                      key={p}
+                      onClick={() => goToPage(p)}
+                      className={`px-2.5 py-1 rounded-md font-bold text-sm transition-all cursor-pointer relative ${
+                        currentPage === p 
+                          ? 'text-primary' 
+                          : 'text-on-surface-variant/50 hover:text-primary'
+                      }`}
+                    >
+                      {p}
+                      {currentPage === p && (
+                        <motion.span 
+                          layoutId="activePageUnderline"
+                          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3.5 h-0.5 bg-secondary rounded-full"
+                        />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
               <AnimatePresence initial={false} custom={direction} mode="wait">
                 <motion.div
                   key={currentPage}
@@ -437,39 +470,64 @@ export default function Home({ setPage, addToCart }: HomeProps) {
                       prevPage();
                     }
                   }}
-                  className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 cursor-grab active:cursor-grabbing touch-pan-y"
+                  className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full cursor-grab active:cursor-grabbing touch-pan-y"
                 >
                   {currentProducts.map((product) => (
                     <motion.div
                       key={product.id}
                       custom={direction}
                       variants={cardVariants}
-                      className="group bg-white rounded-[2rem] p-4 border border-outline-variant/30 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                      className="group bg-white rounded-3xl p-5 border border-outline-variant/30 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
                     >
                       <div>
                         <div 
                           onClick={() => setPage('product')}
-                          className="aspect-square rounded-3xl overflow-hidden bg-gray-50 relative flex justify-center items-center p-8 cursor-pointer"
+                          className="aspect-square rounded-2xl overflow-hidden bg-surface-container-low relative flex justify-center items-center p-6 cursor-pointer"
                         >
                           <img 
                             className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" 
                             src={product.img} 
                             alt={product.name}
                           />
-                          <div className={`absolute top-4 right-4 ${product.badgeBg} text-white px-4 py-1.5 rounded-lg text-xs font-bold tracking-widest shadow-sm`}>
-                            {product.badge}
-                          </div>
                         </div>
-                        <div className="px-4 py-6 text-left">
-                          <h4 onClick={() => setPage('product')} className="text-[28px] font-extrabold text-[#1a202c] cursor-pointer hover:text-secondary transition-colors leading-tight">
+                        
+                        <div className="px-2 py-5 text-left space-y-2">
+                          <span className="text-xs font-semibold text-secondary uppercase tracking-wider">{product.desc}</span>
+                          <h4 
+                            onClick={() => setPage('product')} 
+                            className="text-2xl font-bold text-primary cursor-pointer hover:text-secondary transition-colors leading-tight"
+                          >
                             {product.name}
                           </h4>
-                          <div className="text-[36px] font-extrabold text-[#1a202c] mt-2 leading-none">
+                          
+                          <div className="flex items-center gap-1 text-amber-500 text-sm pt-1">
+                            <span className="material-symbols-outlined text-sm text-amber-500 fill-1">star</span>
+                            <span className="material-symbols-outlined text-sm text-amber-500 fill-1">star</span>
+                            <span className="material-symbols-outlined text-sm text-amber-500 fill-1">star</span>
+                            <span className="material-symbols-outlined text-sm text-amber-500 fill-1">star</span>
+                            <span className="material-symbols-outlined text-sm text-amber-500 fill-1">star_half</span>
+                            <span className="text-xs text-on-surface-variant font-medium ml-1">4.9 (120+)</span>
+                          </div>
+
+                          <div className="text-3xl font-extrabold text-primary pt-2">
                             ${product.price.toFixed(2)}
                           </div>
                         </div>
                       </div>
-                      <div className="px-4 pb-6">
+
+                      <div className="px-2 pt-2 space-y-2">
+                        <button 
+                          onClick={() => addToCart({
+                            name: product.name,
+                            price: product.price,
+                            desc: product.desc,
+                            img: product.img
+                          })}
+                          className="w-full bg-secondary text-on-secondary py-3.5 rounded-xl font-bold text-xs tracking-wider uppercase hover:opacity-90 active:scale-[0.98] transition-all cursor-pointer shadow-md flex items-center justify-center gap-2"
+                        >
+                          <span className="material-symbols-outlined text-sm">add_shopping_cart</span>
+                          Add to Stack
+                        </button>
                         <button 
                           onClick={() => handleProductAction({
                             name: product.name,
@@ -477,9 +535,9 @@ export default function Home({ setPage, addToCart }: HomeProps) {
                             desc: product.desc,
                             img: product.img
                           })}
-                          className="w-full mt-4 bg-[#1b65a6] text-white py-4 rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-[#15548c] active:scale-[0.98] transition-all cursor-pointer"
+                          className="w-full bg-surface-container-low border border-outline-variant/30 text-primary py-3 rounded-xl font-bold text-xs tracking-wider uppercase hover:bg-surface-container transition-all cursor-pointer flex items-center justify-center gap-1"
                         >
-                          VIEW DETAILS
+                          View Details
                         </button>
                       </div>
                     </motion.div>
@@ -488,34 +546,21 @@ export default function Home({ setPage, addToCart }: HomeProps) {
               </AnimatePresence>
             </div>
 
-            {/* Right Arrow Button */}
+            {/* Right Side Arrow Button */}
             <button 
               onClick={nextPage}
               disabled={currentPage === totalPages}
-              className={`hidden md:flex w-14 h-14 rounded-full bg-white border border-outline-variant/30 items-center justify-center text-primary shadow-lg hover:bg-surface-container-low transition-all duration-300 shrink-0 cursor-pointer ${currentPage === totalPages ? 'opacity-30 pointer-events-none' : ''}`}
+              className={`w-12 h-12 rounded-full bg-white border border-outline-variant/30 flex items-center justify-center text-primary shadow-lg hover:bg-surface-container-low transition-all duration-300 shrink-0 cursor-pointer ${currentPage === totalPages ? 'opacity-30 pointer-events-none' : 'hover:scale-110 active:scale-95'}`}
+              aria-label="Next Page"
             >
               <span className="material-symbols-outlined text-2xl font-bold">chevron_right</span>
             </button>
-          </div>
-
-          {/* Dot Indicators */}
-          <div className="mt-8 flex justify-center gap-2">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-              <button
-                key={p}
-                onClick={() => goToPage(p)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  currentPage === p ? 'bg-primary w-6' : 'bg-outline-variant hover:bg-primary/50'
-                }`}
-                aria-label={`Go to page ${p}`}
-              />
-            ))}
           </div>
         </div>
       </section>
 
       {/* Science Block */}
-      <section className="zoom-screen-height snap-start snap-always bg-primary text-on-primary overflow-hidden relative flex flex-col items-center justify-center py-16">
+      <section id="clinical-section" className="bg-primary text-on-primary overflow-hidden relative flex flex-col items-center justify-center py-20 md:py-28">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-20 items-center relative z-10">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
@@ -582,7 +627,7 @@ export default function Home({ setPage, addToCart }: HomeProps) {
       </section>
 
       {/* Newsletter / CTA */}
-      <section className="zoom-screen-height snap-start snap-always bg-surface px-margin-mobile md:px-margin-desktop flex flex-col items-center justify-center py-16">
+      <section className="bg-surface px-margin-mobile md:px-margin-desktop flex flex-col items-center justify-center py-20 md:py-28">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -5,6 +5,7 @@ import ProductDetail from './pages/ProductDetail';
 import Dashboard from './pages/Dashboard';
 import Checkout from './pages/Checkout';
 import Admin from './pages/Admin';
+import Footer from './components/Footer';
 import './App.css';
 
 interface CartItem {
@@ -86,6 +87,19 @@ export default function App() {
   const cartTotalItems = cart.reduce((acc, item) => acc + (item.qty || 1), 0);
   const cartTotalPrice = cart.reduce((acc, item) => acc + (item.price * (item.qty || 1)), 0);
 
+  const scrollToClinical = () => {
+    if (page !== 'home') {
+      setPage('home');
+      setTimeout(() => {
+        const el = document.getElementById('clinical-section');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const el = document.getElementById('clinical-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   // Shell logic: hide standard top navigation on transactional/full-screen pages
   const isTransactionalPage = page === 'checkout' || page === 'dashboard' || page === 'admin';
 
@@ -104,7 +118,7 @@ export default function App() {
             <nav className="hidden lg:flex items-center gap-6 relative h-full">
               <button 
                 onClick={() => setPage('home')}
-                className="text-sm font-medium tracking-wide text-white/80 hover:text-white transition-colors h-full"
+                className="text-sm font-medium tracking-wide text-white/80 hover:text-white transition-colors h-full cursor-pointer"
               >
                 Home
               </button>
@@ -133,10 +147,10 @@ export default function App() {
               </div>
 
               <button 
-                onClick={() => setPage('shop')}
-                className="text-sm font-medium tracking-wide text-white/80 hover:text-white transition-colors"
+                onClick={scrollToClinical}
+                className="text-sm font-medium tracking-wide text-white/80 hover:text-white transition-colors cursor-pointer"
               >
-                All Products
+                Facilities
               </button>
               <button 
                 onClick={() => setPage('shop')}
@@ -287,6 +301,9 @@ export default function App() {
       {page === 'dashboard' && <Dashboard setPage={setPage} />}
       {page === 'checkout' && <Checkout setPage={setPage} cart={cart} clearCart={clearCart} />}
       {page === 'admin' && <Admin setPage={setPage} />}
+
+      {/* Shared Footer */}
+      {!isTransactionalPage && <Footer setPage={setPage} />}
     </div>
   );
 }
